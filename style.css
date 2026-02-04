@@ -1,1 +1,156 @@
+<style>
+:root{
+  --green:#2ecc71;
+  --green-dark:#27ae60;
+  --bg:#f7f9f8;
+  --card:#ffffff;
+  --text:#111;
+  --border:#dfe6e9;
+}
+.dark{
+  --bg:#0f1311;
+  --card:#161b18;
+  --text:#eaeaea;
+  --border:#2c3e35;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  padding:20px;
+}
+.hidden{display:none}
 
+/* Top bar */
+.topbar{
+  position:fixed;
+  top:15px;
+  right:15px;
+  display:flex;
+  gap:8px;
+}
+.topbar button{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:8px 10px;
+}
+
+/* Cards */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px;
+  margin-bottom:16px;
+}
+h2{margin-top:0;color:var(--green-dark)}
+
+/* Grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:14px;
+}
+
+/* Inputs */
+label{
+  font-weight:700;
+  font-size:13px;
+  margin-bottom:4px;
+  display:block;
+}
+input,select,textarea{
+  width:100%;
+  padding:8px 10px;
+  border-radius:6px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text);
+}
+textarea{height:80px}
+
+/* Buttons */
+button{
+  border:none;
+  border-radius:6px;
+  padding:9px 14px;
+  cursor:pointer;
+  font-weight:600;
+  background:var(--green);
+  color:#fff;
+}
+button:hover{background:var(--green-dark)}
+.btn-row button{margin-right:6px}
+
+/* Login */
+#loginCard{
+  max-width:360px;
+  margin:80px auto;
+  text-align:center;
+}
+#loginCard input{margin-bottom:10px}
+
+/* Historial */
+.registro{
+  font-size:13px;
+  padding:6px 0;
+  border-bottom:1px dashed var(--border);
+}
+
+/* Responsive */
+@media(max-width:600px){
+  body{padding:12px}
+}
+
+.footer{
+  text-align:center;
+  margin-top:30px;
+  font-size:12px;
+  opacity:0.7;
+}
+/* Selects en modo oscuro */
+.dark select {
+  color: #fff;;
+  background-color: #161b18;
+}
+
+.dark select option {
+  color: #fff;
+  background-color: #161b18;
+}
+/* Botón Cerrar sesión en modo claro */
+.btn-logout{
+  background: var(--card);
+  color: var(--green-dark);
+  border: 1px solid var(--green-dark);
+}
+
+/* En modo oscuro mantiene el estilo normal */
+.dark .btn-logout{
+  background: var(--card);
+  color: #fff;
+  border: 1px solid var(--border);
+}
+
+/* SOLUCIÓN auto crecimiento */
+.solucion-wrapper{
+  grid-column: span 2; /* ocupa más espacio pero sin romper grid */
+}
+
+textarea.auto-grow{
+  width:100%;
+  min-width:240px;
+  max-width:100%;     /* límite horizontal */
+  min-height:80px;
+  max-height:350px;   /* límite vertical */
+  resize:none;        /* controlado solo por JS */
+  overflow:hidden;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+
+</style>
