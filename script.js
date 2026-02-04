@@ -1,4 +1,3 @@
-<script>
 /* ===== LOGIN ===== */
 const USERS={gmelendez:"noc2025",admin:"admin123"};
 let currentUser=null;
@@ -236,4 +235,3 @@ solucion.addEventListener("input", function(){
 /* Auto login */
 iniciar();
 actualizarFavicon();
-</script>
