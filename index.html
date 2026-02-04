@@ -141,6 +141,24 @@ button:hover{background:var(--green-dark)}
   border: 1px solid var(--border);
 }
 
+/* SOLUCIÓN auto crecimiento */
+.solucion-wrapper{
+  grid-column: span 2; /* ocupa más espacio pero sin romper grid */
+}
+
+textarea.auto-grow{
+  width:100%;
+  min-width:240px;
+  max-width:100%;     /* límite horizontal */
+  min-height:80px;
+  max-height:350px;   /* límite vertical */
+  resize:none;        /* controlado solo por JS */
+  overflow:hidden;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+
 </style>
 </head>
 
@@ -226,7 +244,12 @@ button:hover{background:var(--green-dark)}
 <select id="preset" onchange="usarPreset()"></select>
 </div>
 
-<div><label>SOLUCIÓN</label><input id="solucion"></div>
+<div class="solucion-wrapper">
+  <label>SOLUCIÓN</label>
+  <textarea id="solucion" class="auto-grow"
+    placeholder="Describe la solución aplicada..."></textarea>
+</div>
+
 
 <div><label>HORA RESTABLECIMIENTO</label>
 <input type="datetime-local" id="hora">
@@ -308,7 +331,11 @@ function cargarPresets(){
   let custom=JSON.parse(localStorage.getItem("presets_"+currentUser)||"[]");
   [...PRESETS_BASE,...custom].forEach(p=>preset.innerHTML+=`<option>${p}</option>`);
 }
-function usarPreset(){solucion.value=preset.value;}
+function usarPreset(){
+  solucion.value = preset.value;
+  autoGrow(solucion);
+}
+
 function guardarPreset(){
   if(!solucion.value)return;
   let p=JSON.parse(localStorage.getItem("presets_"+currentUser)||"[]");
@@ -464,6 +491,26 @@ function actualizarFavicon(){
   });
 }
 
+/* AUTO CRECER SOLUCIÓN (horizontal + vertical) */
+const solucion = document.getElementById("solucion");
+
+function autoGrow(el){
+  // Reset
+  el.style.height = "auto";
+  el.style.width  = "100%";
+
+  // Vertical
+  el.style.height = el.scrollHeight + "px";
+
+  // Horizontal (solo si el contenido lo necesita)
+  if(el.scrollWidth > el.clientWidth){
+    el.style.width = Math.min(el.scrollWidth, el.parentElement.clientWidth) + "px";
+  }
+}
+
+solucion.addEventListener("input", function(){
+  autoGrow(this);
+});
 
 /* Auto login */
 iniciar();
